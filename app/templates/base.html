@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodCare</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>MoodCare</h1>
+        <nav>
+            <a href="{% url 'home' %}">Início</a>
+            <a href="{% url 'login' %}">Login Usuário</a>
+            <a href="{% url 'cadastro' %}">Cadastro</a>
+            <a href="{% url 'dashboard' %}">Sua Aba</a>
+            <a href="{% url 'profissionais_view' %}">Profissionais</a>
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 MoodCare. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

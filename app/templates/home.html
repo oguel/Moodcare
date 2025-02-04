@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="banner">
+    <h2>Bem-vindo ao MoodCare</h2>
+    <p>Monitore seu bem-estar emocional e tenha suporte de profissionais especializados.</p>
+    <a href="{% url 'dashboard' %}" class="btn">Acessar Dashboard</a>
+</section>
+
+<section class="ultimos-registros">
+    {% if user.is_authenticated %}
+    <!-- Mostrar registros de humor e postagens -->
+
+
+    <h3>Últimos Registros de Humor</h3>
+    {% if registros_humor %}
+    <ul>
+        {% for registro in registros_humor %}
+        <li>
+            <strong>{{ registro.data }}</strong>:
+            Humor <span class="humor-nivel">{{ registro.humor }}</span>/10
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Você ainda não registrou seu humor. Comece hoje!</p>
+    {% endif %}
+    {% else %}
+    <p>Por favor, faça login para ver seus registros de humor e postagens de ajuda.</p>
+    {% endif %}
+</section>
+
+<section class="posts-ajuda">
+    <h3>Últimas Dicas e Recomendações</h3>
+    {% if postagens %}
+    <div class="postagens">
+        {% for post in postagens %}
+        <div class="post">
+            <h4>{{ post.titulo }}</h4>
+            <p>{{ post.descricao|truncatewords:20 }}</p>
+            {% if post.links %}
+            <a href="{{ post.links }}" target="_blank">Saiba mais</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>Nenhuma postagem disponível no momento.</p>
+    {% endif %}
+</section>
+
+{% endblock %}

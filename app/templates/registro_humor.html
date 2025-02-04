@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Registrar Humor</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="humor">Como você está se sentindo hoje? (1 a 10)</label>
+        <input type="number" name="humor" min="1" max="10" required>
+
+        <label for="eventos">O que aconteceu hoje?</label>
+        <textarea name="eventos"></textarea>
+
+        <label for="anotacoes">Anotações:</label>
+        <textarea name="anotacoes"></textarea>
+
+        <button type="submit">Salvar</button>
+    </form>
+</div>
+{% endblock %}
